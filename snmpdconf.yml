@@ -1,0 +1,27 @@
+---
+- hosts: all
+  remote_user: renato
+  become: yes
+  become_method: sudo
+  gather_facts: yes
+  vars:
+  tasks:
+
+- name: Install snmp packages
+ yum: name=net-snmp state=latest
+
+- name: Enable snmp service
+ service: name=snmpd enabled=yes
+ notify: Restart snmpd
+
+- name: Download snmpd config file
+ get_url:
+ url: http://192.168.1.203/snmpd.conf
+ dest: /tmp/snmpd.conf
+
+copy: src=/tmp/snmpd.conf dest=/etc/snmp/snmpd.conf owner=root group=root mode=644
+ notify: Restart snmpd
+
+handlers:
+ - name: Restart snmpd
+ action: service name=snmpd state=restarted
