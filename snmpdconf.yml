@@ -1,11 +1,3 @@
----
-- hosts: all
-  remote_user: renato
-  become: yes
-  become_method: sudo
-  gather_facts: yes
-  vars:
-  tasks:
   
 - name: Enable snmp service
  service: name=snmpd enabled=yes
