@@ -6,10 +6,7 @@
   gather_facts: yes
   vars:
   tasks:
-
-- name: Install snmp packages
- yum: name=net-snmp state=latest
-
+  
 - name: Enable snmp service
  service: name=snmpd enabled=yes
  notify: Restart snmpd
