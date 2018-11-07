@@ -16,7 +16,7 @@
 
 - name: Download snmpd config file
  get_url:
- url: http://192.168.2.8/snmpd.conf
+ url: http://192.168.1.203/snmpd.conf
  dest: /tmp/snmpd.conf
 
 copy: src=/tmp/snmpd.conf dest=/etc/snmp/snmpd.conf owner=root group=root mode=644
